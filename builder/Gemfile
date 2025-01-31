@@ -1,19 +1,25 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.1.0'
+ruby '3.4.1'
 
 # Full-stack web application framework. (https://rubyonrails.org)
-gem 'rails', '~> 7.0.2'
+gem 'rails', '~> 8.0.0'
 
 # Sprockets Rails integration (https://github.com/rails/sprockets-rails)
 gem 'sprockets-rails'
 
-# Pg is the Ruby interface to the {PostgreSQL RDBMS}[http://www.postgresql.org/] (https://github.com/ged/ruby-pg)
+# Use Vite in Rails and bring joy to your JavaScript experience (https://github.com/ElMassimo/vite_ruby)
+gem 'vite_rails'
+
+# A modest JavaScript framework for the HTML you already have. (https://stimulus.hotwired.dev)
+gem 'stimulus-rails'
+
+# Pg is the Ruby interface to the PostgreSQL RDBMS (https://github.com/ged/ruby-pg)
 gem 'pg', '~> 1.1'
 
-# Puma is a simple, fast, threaded, and highly parallel HTTP 1.1 server for Ruby/Rack applications (https://puma.io)
-gem 'puma', '~> 5.0'
+# A Ruby/Rack web server built for parallelism. (https://puma.io)
+gem 'puma', '~> 6'
 
 # The speed of a single-page web application without having to write any JavaScript. (https://github.com/hotwired/turbo-rails)
 gem 'turbo-rails'
@@ -27,26 +33,23 @@ gem 'jbuilder'
 # A fast JSON parser and serializer. (http://www.ohler.com/oj)
 gem 'oj'
 
+# JSON Implementation for Ruby (https://ruby.github.io/json)
+gem 'json'
+
 # High-level wrapper for processing images for the web with ImageMagick or libvips. (https://github.com/janko/image_processing)
 gem 'image_processing', '~> 1.2'
-
-# AWS SDK for Ruby - Amazon S3 (https://github.com/aws/aws-sdk-ruby)
-gem 'aws-sdk-s3'
 
 # Boot large ruby/rails apps faster (https://github.com/Shopify/bootsnap)
 gem 'bootsnap', require: false
 
-# Reports exceptions to Rollbar (https://rollbar.com)
-gem 'rollbar'
+# Error reports you can be happy about. (https://www.honeybadger.io/for/ruby/)
+gem 'honeybadger'
 
 # Tame Rails' multi-line logging into a single line per request (https://github.com/roidrage/lograge)
 gem 'lograge'
 
-# The kick-ass pagination ruby gem (https://github.com/ddnexus/pagy)
+# The best pagination ruby gem (https://github.com/ddnexus/pagy)
 gem 'pagy'
-
-# A modern, responsive admin framework for Ruby on Rails (https://www.trestle.io)
-gem 'trestle'
 
 # Flexible authentication solution for Rails with Warden (https://github.com/heartcombo/devise)
 gem 'devise'
@@ -63,20 +66,11 @@ gem 'rack-canonical-host'
 # Brotli compression for Rack responses (http://github.com/marcotc/rack-brotli/)
 gem 'rack-brotli'
 
-# Simple authorization solution for Rails. (https://github.com/CanCanCommunity/cancancan)
-gem 'cancancan'
+# Slim templates generator for Rails (https://github.com/slim-template/slim-rails)
+gem 'slim-rails'
 
-# A gem adding sorting, reordering capabilities to an active_record model, allowing it to act as a list (http://github.com/brendon/acts_as_list)
-gem 'acts_as_list'
-
-# Turbolinks makes navigating your web application faster (https://github.com/turbolinks/turbolinks)
-gem 'turbolinks', '~> 5'
-
-# Use Rails render with Turbolinks (https://github.com/jorgemanrubia/turbolinks_render)
-gem 'turbolinks_render'
-
-# Slim is a template language. (http://slim-lang.com/)
-gem 'slim'
+# A framework for building reusable, testable & encapsulated view components in Ruby on Rails. (https://viewcomponent.org)
+gem 'view_component'
 
 # Simple HTTP and REST client for Ruby, inspired by microframework syntax for specifying actions. (https://github.com/rest-client/rest-client)
 gem 'rest-client'
@@ -84,17 +78,11 @@ gem 'rest-client'
 # Simple, efficient background processing for Ruby (https://sidekiq.org)
 gem 'sidekiq'
 
-# Complete geocoding solution for Ruby. (http://www.rubygeocoder.com)
-gem 'geocoder'
-
-# Collection of SEO helpers for Ruby on Rails. (https://github.com/kpumuk/meta-tags)
-gem 'meta-tags'
-
-# Intelligent search made easy with Rails and Elasticsearch or OpenSearch (https://github.com/ankane/searchkick)
-gem 'searchkick'
-
-# Markdown that smells nice (http://github.com/vmg/redcarpet)
+# Markdown that smells nice (https://github.com/vmg/redcarpet)
 gem 'redcarpet'
 
 # A comprehensive slugging and pretty-URL plugin. (https://github.com/norman/friendly_id)
 gem 'friendly_id'
+
+# SSL/TLS and general-purpose cryptography for Ruby (https://github.com/ruby/openssl)
+gem 'openssl'
