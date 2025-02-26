@@ -6,7 +6,7 @@
 version: 2
 updates:
   - package-ecosystem: bundler
-    directory: "/Builder"
+    directory: '/builder'
     schedule:
       interval: daily
       time: '01:00'
@@ -19,18 +19,31 @@ updates:
     labels:
       - 'dependencies'
       - 'ruby'
-
-  - package-ecosystem: npm
-    directory: "/Builder"
-    schedule:
-      interval: daily
-      time: '01:00'
-      timezone: Europe/Berlin
-    open-pull-requests-limit: 10
-    versioning-strategy: auto
-    labels:
-      - 'dependencies'
-      - 'javascript'
+    groups:
+      rails:
+        patterns:
+          - 'actioncable'
+          - 'actionmailbox'
+          - 'actionmailer'
+          - 'actionpack'
+          - 'actiontext'
+          - 'actionview'
+          - 'activejob'
+          - 'activemodel'
+          - 'activerecord'
+          - 'activestorage'
+          - 'activesupport'
+          - 'rails'
+          - 'railties'
+          - 'globalid'
+          - 'i18n'
+          - 'mail'
+          - 'rack'
+          - 'rackup'
+      turbo:
+        patterns:
+          - 'turbo-rails'
+          - 'stimulus-rails'
 
   - package-ecosystem: 'github-actions'
     directory: '/'
