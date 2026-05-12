@@ -23,12 +23,12 @@ As you can see, using DockerRailsBase is more than **2 times faster** compared t
 
 Note: Before I started timing, the base image was not available on my machine, so it was downloaded first, which took some time. If the base image is already available, the building time is only 1:18min (**3 times faster**).
 
-# Requirements
+## Requirements
 
 This repo is based on the following assumptions:
 
-- Your Docker host is compatible with [Alpine Linux 3.22](https://www.alpinelinux.org/posts/Alpine-3.22.0-released.html), which requires Docker 20.10.0 or later
-- Your app is compatible with [Ruby 3.4 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/3.4/alpine3.22/Dockerfile)
+- Your Docker host is compatible with [Alpine Linux 3.23](https://www.alpinelinux.org/posts/Alpine-3.23.0-released.html), which requires Docker 20.10.0 or later
+- Your app is compatible with [Ruby 4.0 for Alpine Linux](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.23/Dockerfile)
 - Your app uses Ruby on Rails 7.1 or later (including Rails 8.1)
 - Your app uses PostgreSQL, SQLite or MySQL/MariaDB
 - Your app installs Node modules with [Yarn](https://yarnpkg.com/) or [Bun](https://bun.sh/) (automatically detected)
@@ -46,7 +46,7 @@ The `builder` stage installs Ruby gems and Node modules. It also includes Git, N
 
 - Based on [ruby:4.0.4-alpine](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.23/Dockerfile)
 - Adds packages needed for installing gems and compiling assets: Git, Node.js, PostgreSQL client and build tools
-- Adds some default Ruby gems (Rails 8.0 etc., see [Gemfile](./builder/Gemfile))
+- Adds some default Ruby gems (Rails 8.1 etc., see [Gemfile](./builder/Gemfile))
 - Via ONBUILD triggers it installs missing gems and Node modules, then compiles the assets
 - Automatically detects whether to use Yarn or Bun based on lock files:
   - If `bun.lockb` or `bun.lock` exists: Installs Bun and uses it for package installation
@@ -60,7 +60,7 @@ See [builder/Dockerfile](./builder/Dockerfile)
 The `final` stage builds the production image, which includes just the bare minimum.
 
 - Based on [ruby:4.0.4-alpine](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.23/Dockerfile)
-- Adds packages needed for production: postgresql-client, tzdata, file
+- Adds packages needed for production: `postgresql-client`, `tzdata`, `gcompat`, `brotli-libs`, `jemalloc`
 - Via ONBUILD triggers it mainly copies the app and gems from the `builder` stage
 
 See [final/Dockerfile](./final/Dockerfile)
