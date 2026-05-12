@@ -182,6 +182,12 @@ When a new Ruby version comes out, a new tag is introduced and the images will b
 | 4.0.2        | 4.0.2-alpine | 2026-03-18      |
 | 4.0.1        | 4.0.1-alpine | 2026-01-14      |
 | 4.0.0        | 4.0.0-alpine | 2025-12-28      |
+
+<details>
+<summary>Older Ruby versions</summary>
+
+| Ruby version | Tag          | First published |
+| ------------ | ------------ | --------------- |
 | 3.4.8        | 3.4.8-alpine | 2025-12-18      |
 | 3.4.7        | 3.4.7-alpine | 2025-10-09      |
 | 3.4.6        | 3.4.6-alpine | 2025-09-17      |
@@ -212,6 +218,8 @@ When a new Ruby version comes out, a new tag is introduced and the images will b
 | 2.7.1        | 2.7.1-alpine | 2020-05-20      |
 | 2.6.6        | -            | 2020-04-01      |
 | 2.6.5        | -            | 2020-01-24      |
+
+</details>
 
 The latest Docker images are also tagged as `latest`. However, it is not recommended to use this tag in your Rails application, because updating an app to a new Ruby version usually requires some extra work.
 
