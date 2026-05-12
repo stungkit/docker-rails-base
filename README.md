@@ -52,6 +52,8 @@ The `builder` stage installs Ruby gems and Node modules. It also includes Git, N
   - If `bun.lockb` or `bun.lock` exists: Installs Bun and uses it for package installation
   - If `yarn.lock` exists: Uses Yarn (via corepack)
   - If no lock file exists: Falls back to Yarn
+- Precompiles gems and application code with [Bootsnap](https://github.com/Shopify/bootsnap) for faster boot times. Can be disabled via the `SKIP_BOOTSNAP_PRECOMPILE` build argument.
+- Shrinks the final image by removing the gem cache, vendored `.git` directories and `*.c` / `*.o` build artifacts, and by stripping native shared objects
 
 See [builder/Dockerfile](./builder/Dockerfile)
 
@@ -61,6 +63,8 @@ The `final` stage builds the production image, which includes just the bare mini
 
 - Based on [ruby:4.0.4-alpine](https://github.com/docker-library/ruby/blob/master/4.0/alpine3.23/Dockerfile)
 - Adds packages needed for production: `postgresql-client`, `tzdata`, `gcompat`, `brotli-libs`, `jemalloc`
+- Preloads [jemalloc](https://jemalloc.net/) via `LD_PRELOAD` for reduced memory usage and lower latency
+- Ships `brotli-libs` so [`rack-brotli`](https://github.com/marcotc/rack-brotli) can serve Brotli-compressed responses
 - Via ONBUILD triggers it mainly copies the app and gems from the `builder` stage
 
 See [final/Dockerfile](./final/Dockerfile)
@@ -116,6 +120,12 @@ In a similar way you can provide a configuration file for Bundler:
 
 ```
 docker buildx build --secret id=bundleconfig,src=$HOME/.bundle/config .
+```
+
+If you don't want Bootsnap to precompile gems and application code at build time (for example to save build time when the resulting cache will not be used), pass the `SKIP_BOOTSNAP_PRECOMPILE` build argument:
+
+```
+docker buildx build --build-arg SKIP_BOOTSNAP_PRECOMPILE=1 .
 ```
 
 #### Continuous integration (CI)
